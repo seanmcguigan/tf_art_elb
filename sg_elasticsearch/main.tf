@@ -25,7 +25,8 @@ resource "aws_security_group" "main_security_group" {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = ["${var.source_cidr_block}"]
+        cidr_blocks = ["${var.source_cidr_block}"] /* Your office/s ip address here, 
+        or create a var for it in an array:) */
     }
 
     // allow traffic for TCP 9200 (REST Interface)

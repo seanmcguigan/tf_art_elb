@@ -40,12 +40,15 @@ yum install elasticsearch -y
 chkconfig --add elasticsearch
 
 /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf
+/usr/share/elasticsearch/bin/plugin install cloud-aws <<< 'y'
 
-echo 'network.host: _eth0_' >> /etc/elasticsearch/elasticsearch.yml
-#echo 'discovery.zen.ping.multicast.enabled: false' >> /etc/elasticsearch/elasticsearch.yml
-#echo 'discovery.zen.minimum_master_nodes: 2' >> /etc/elasticsearch/elasticsearch.yml
-#echo 'discovery.zen.ping.unicast.hosts: [“es00.art.com″, ”es01.art.com″, ”es02.art.com″]' >> /etc/elasticsearch/elasticsearch.yml
-#echo 'bootstrap.mlockall: true' >> /etc/elasticsearch/elasticsearch.yml
+
+echo 'network.host: _ec2:privateIp_' >> /etc/elasticsearch/elasticsearch.yml
+echo 'cluster.name: artirix' >> /etc/elasticsearch/elasticsearch.yml
+echo 'discovery.zen.ping.multicast.enabled: false' >> /etc/elasticsearch/elasticsearch.yml
+echo 'discovery.zen.minimum_master_nodes: 1' >> /etc/elasticsearch/elasticsearch.yml
+echo 'discovery.zen.ping.unicast.hosts: ['es00.art.com', 'es01.art.com', 'es02.art.com']' >> /etc/elasticsearch/elasticsearch.yml
+echo 'bootstrap.mlockall: true' >> /etc/elasticsearch/elasticsearch.yml
 
 service elasticsearch start
 
