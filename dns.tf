@@ -38,5 +38,24 @@ resource "aws_route53_record" "es" {
   name = "es0${count.index}.art.com"
   type = "A"
   ttl = "300"
-  records = ["${element(aws_instance.es.*.private_ip, count.index)}"]
+//  records = ["${element(aws_instance.es.*.private_ip, count.index)}"]
+//  records = ["${module.es_nodes.aws_instance_ip}"]
+  records = ["${element(split(",", module.es_nodes.aws_instance_ip), count.index)}"]
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

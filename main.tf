@@ -21,6 +21,19 @@ module "sg_elasticsearch" {
   source_cidr_block = "0.0.0.0/0"
 }
 
+module "es_nodes" {
+  source = "./es_nodes"
+  ami = "ami-7172b611"
+  count = "3"
+  instance_type = "t2.small"
+  key_name = "tf_art"
+  security_groups = "${module.sg_elasticsearch.security_group_id}"
+  subnet_id = "${module.vpc.private_subnets}"
+  associate_public_ip_address = "false"
+  source_dest_check = "false"
+  user_data = "${file("userdata.sh")}"
+}
+
 
 //["${element(aws_instance.es.*.private_ip, count.index)}"]
 

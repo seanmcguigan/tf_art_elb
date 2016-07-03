@@ -20,7 +20,10 @@ resource "aws_elb" "art" {
   //count = 3
   
   //instances = ["${element(aws_instance.es.*.id, count.index)}"]
-  instances = ["${aws_instance.es.*.id}"]
+  //instances = ["${aws_instance.es.*.id}"]
+
+  instances = ["${split(",", module.es_nodes.aws_instance)}"]
+
 
   //subnets = ["subnet-30b7d454", "subnet-ff5a97a7", "subnet-d56dd7a3"]
 
