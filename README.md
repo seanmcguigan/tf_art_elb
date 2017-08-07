@@ -1,4 +1,4 @@
-#tf_elb
+## tf_elb
 
 Fault tolerant extension of community tf_aws_vpc adding NAT service gateway routing https://github.com/terraform-community-modules/tf_aws_vpc.
 x3 az, x3 public subnets, x3 private subnets.
@@ -17,7 +17,7 @@ Outputs:
   public_subnets         = subnet-30b7d454,subnet-d56dd7a3,subnet-ff5a97a7
   vpc_id                 = vpc-b988fbdd
 ```
-#provisioner
+## provisioner
 
 No time to build a provisioning tool so userdata used to configure elasticsearch, not ideal would prefer to provision with chef/chef server, example provisoner.
 ```
